@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portofolio | Hermas Pramudya Wicaksono</title>
+
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Font Awesome untuk ikon centang -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: linear-gradient(135deg, #1e1e2f, #2b2b40);
+    color: white;
+    font-family: "Playfair Display", serif;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  header h1 {
+    font-family: "Great Vibes", cursive;
+    font-size: 3rem;
+    animation: fadeInDown 1.2s ease;
+  }
+  header h2.glowing-text {
+    font-family: "Cinzel", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    color: #f0e6d2;
+    letter-spacing: 1px;
+  }
+  header h2.glowing-text span {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    animation-name: glow;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+  }
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.3;
+      text-shadow: none;
+    }
+    50% {
+      opacity: 1;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff00de,
+        0 0 30px #ff00de,
+        0 0 40px #ff00de,
+        0 0 55px #ff00de,
+        0 0 75px #ff00de;
+    }
+  }
+  /* Delay animasi per huruf */
+  header h2.glowing-text span:nth-child(1) { animation-delay: 0s; }
+  header h2.glowing-text span:nth-child(2) { animation-delay: 0.15s; }
+  header h2.glowing-text span:nth-child(3) { animation-delay: 0.3s; }
+  header h2.glowing-text span:nth-child(4) { animation-delay: 0.45s; }
+  header h2.glowing-text span:nth-child(5) { animation-delay: 0.6s; }
+  header h2.glowing-text span:nth-child(6) { animation-delay: 0.75s; }
+  header h2.glowing-text span:nth-child(7) { animation-delay: 0.9s; }
+  header h2.glowing-text span:nth-child(8) { animation-delay: 1.05s; }
+  header h2.glowing-text span:nth-child(9) { animation-delay: 1.2s; }
+  header h2.glowing-text span:nth-child(10) { animation-delay: 1.35s; }
+  header h2.glowing-text span:nth-child(11) { animation-delay: 1.5s; }
+  header h2.glowing-text span:nth-child(12) { animation-delay: 1.65s; }
+  header h2.glowing-text span:nth-child(13) { animation-delay: 1.8s; }
+  header h2.glowing-text span:nth-child(14) { animation-delay: 1.95s; }
+  header h2.glowing-text span:nth-child(15) { animation-delay: 2.1s; }
+  header h2.glowing-text span:nth-child(16) { animation-delay: 2.25s; }
+  header h2.glowing-text span:nth-child(17) { animation-delay: 2.4s; }
+  header h2.glowing-text span:nth-child(18) { animation-delay: 2.55s; }
+  header h2.glowing-text span:nth-child(19) { animation-delay: 2.7s; }
+  header h2.glowing-text span:nth-child(20) { animation-delay: 2.85s; }
+  header h2.glowing-text span:nth-child(21) { animation-delay: 3.0s; }
+
+  header p {
+    font-size: 1.2rem;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 1.5s ease forwards;
+    animation-delay: 2.2s;
+  }
+
+  /* Tentang Saya section */
+  #tentangSaya {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    transition-delay: 2.5s;
+    margin-top: 1.5rem;
+  }
+  #tentangSaya h3 {
+    color: white;
+    text-shadow: 0 0 6px #bb33ff;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  #tentangSaya p {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    flex-grow: 1;
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    cursor: pointer;
+  }
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .card h3 {
+    padding: 1rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.5rem;
+  }
+  .card p {
+    padding: 0 1rem 1rem;
+    font-family: "Playfair Display", serif;
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 1rem;
+    color: #f0e6d2;
+    margin-top: 0.5rem; /* Dikurangi supaya footer lebih dekat ke kontak */
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Modal styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal {
+    background: #222233;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    padding: 1rem 1.5rem;
+    color: white;
+    box-shadow: 0 0 20px #ff00de;
+    position: relative;
+  }
+  .modal img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .modal h3 {
+    margin-top: 1rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.8rem;
+  }
+  .modal p {
+    margin-top: 0.5rem;
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+  }
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff00de;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* Contact Section */
+  #contact {
+    background: rgba(0,0,0,0.6);
+    padding: 1.5rem 0 1.5rem 0; /* Dikurangi padding bawah supaya lebih rapat */
+    text-align: center;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 0; /* Dihapus supaya footer lebih dekat */
+  }
+  #contact h3 {
+    margin-bottom: 1rem;
+    color: #bb33ff;
+    text-shadow: 0 0 8px #bb33ff;
+  }
+  #contact p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+  #contact a {
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #contact i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+  }
+  #contact .fa-envelope {
+    color: #ff77ff;
+  }
+  #contact .fa-whatsapp {
+    color: #25D366;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>My Portofolio</h1>
+    <h2 class="glowing-text">
+      <span>H</span><span>E</span><span>R</span><span>M</span><span>A</span><span>S</span>
+      <span> </span>
+      <span>P</span><span>R</span><span>A</span><span>M</span><span>U</span><span>D</span><span>Y</span><span>A</span>
+      <span> </span>
+      <span>W</span><span>I</span><span>C</span><span>A</span><span>K</span><span>S</span><span>O</span><span>N</span><span>O</span>
+    </h2>
+    <p>Design • Editing • Creativity</p>
+
+    <!-- Tentang Saya -->
+    <section id="tentangSaya">
+      <h3>Tentang Saya</h3>
+      <p>
+        Saya adalah seorang video editor dan design grafis yang kreatif dan detail. Saya suka mengubah ide jadi konten visual menarik dan mudah dipahami. Terampil menggunakan CapCut, Alight Motion, dan Canva untuk hasil yang maksimal.
+      </p>
+    </section>
+  </header>
+
+  <section class="portfolio">
+    <div class="card" data-title="Portofolio Video Editing" data-img="PortofolioEditing.jpg" data-desc="Video Short/Tiktok/Reel.">
+      <img src="PortofolioEditing.jpg" alt="Portofolio Video Editing" />
+      <h3><a href="https://www.canva.com/design/DAGmfXYHhmQ/DvnI7j54hZZSYfNpVvp97A/edit?utm_content=DAGmfXYHhmQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" style="color: inherit; text-decoration: none;">Portofolio Video Editing</a></h3>
+      <p>Video Short/Tiktok/Reel.</p>
+    </div>
+    <div class="card" data-title="Story Telling" data-img="StoryTelling.png" data-desc="Menghidupkan cerita supaya pesan terserap dan berkesan.">
+      <img src="StoryTelling.png" alt="StoryTelling" />
+      <h3><a href="https://drive.google.com/file/d/15QLzKzCas-3pfzPkyOYEnN46-yKMLHXx/view?usp=drivesdk" target="_blank" style="color: inherit; text-decoration: none;">StoryTelling</a></h3>
+      <p>Menghidukan cerita supaya pesan terserap dan berkesan.</p>
+    </div>
+    <div class="card" data-title="Editing Photo" data-img="Hanamiwang.png" data-desc="Pengeditan foto yang profesional dengan warna menawan dan sesuai.">
+      <img src="Hanamiwang.png" alt="Editing Photo" />
+      <h3><a href="https://www.canva.com/design/DAGuQJLpVpI/S76Iot-NvO_oOsCsFWiDrQ/edit?utm_content=DAGuQJLpVpI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" style="color: inherit; text-decoration: none;">Editing Photo</a></h3>
+      <p>Pengeditan foto yang profesional dengan warna menawan dan sesuai.</p>
+    </div>
+    <div class="card" data-title="Design T-Shirt" data-img="DesignBaju.png" data-desc="Tampilan yang stylish, bold, dan eye-catching.">
+      <img src="DesignBaju.png" alt="Design T-Shirt" />
+      <h3><a href="https://www.canva.com/design/DAGnPCsMu7k/NDRe9un_jz_thj88JCEzzw/edit?utm_content=DAGnPCsMu7k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" style="color: inherit; text-decoration: none;">Design T-Shirt</a></h3>
+      <p>Tampilan yang stylish, bold, dan eye-catching.</p>
+    </div>
+    <div class="card" data-title="Design Lanyard" data-img="DesignLanyard.jpg" data-desc="Tampilan yang simpel, profesional, dan mudah dikenali.">
+      <img src="DesignLanyard.jpg" alt="Design Lanyard" />
+      <h3><a href="https://www.canva.com/design/DAGqZqr7wCg/yW8LRP8hbPJ3ZeoeZHeGvg/edit?utm_content=DAGqZqr7wCg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" style="color: inherit; text-decoration: none;">Design Lanyard</a></h3>
+      <p>Tampilan yang simpel, profesional, dan mudah dikenali.</p>
+    </div>
+  </section>
+<!-- Contact Section -->
+  <section id="contact">
+    <h3>Kontak Saya</h3>
+    <p>
+      <a href="mailto:hermasprmdya@gmail.com">
+        <i class="fa-solid fa-envelope"></i> hermasprmdya@gmail.com
+      </a>
+    </p>
+    <p>
+      <a href="https://wa.me/6288289616032" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i> 0882-8961-6032
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Hermas Pramudya Wicaksono <i class="fa-solid fa-circle-check" style="color:#1DA1F2;"></i>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContent">
+      <span class="close-btn" id="closeBtn">&times;</span>
+      <img src="" alt="Project Image" id="modalImage" />
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+
+  <script>
+    // Animasi muncul saat scroll
+    const cards = document.querySelectorAll(".card");
+    window.addEventListener("scroll", () => {
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+          card.style.transition = "all 0.8s ease";
+        }
+      });
+    });
+
+    // Tampilkan "Tentang Saya" setelah delay
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const tentangSaya = document.getElementById('tentangSaya');
+        tentangSaya.style.opacity = '1';
+        tentangSaya.style.transform = 'translateY(0)';
+      }, 2500);
+    });
+
+    // Modal functionality
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const closeBtn = document.getElementById("closeBtn");
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        modalImage.src = card.dataset.img;
+        modalTitle.textContent = card.dataset.title;
+        modalDesc.textContent = card.dataset.desc;
+        modalOverlay.style.display = "flex";
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modalOverlay.style.display = "none";
+    });
+
+    // Klik luar modal untuk tutup
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
