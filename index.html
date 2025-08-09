@@ -17,6 +17,20 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
+<!-- Musik Latar -->
+<audio id="bg-music" autoplay loop>
+  <source src="MelodyAestetik.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio.
+</audio>
+
+<script>
+  // Musik mulai setelah user klik pertama (biar tidak diblokir browser)
+  document.addEventListener("click", function() {
+    document.getElementById('bg-music').play();
+  }, { once: true });
+</script>
+
+
 <style>
   * {
     margin: 0;
